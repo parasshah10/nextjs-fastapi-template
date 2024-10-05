@@ -2,6 +2,7 @@
 import Image from "next/image";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 import {
   Select,
   SelectContent,
@@ -12,16 +13,15 @@ import {
 
 export default function Home() {
   const [greeting, setGreeting] = useState("");
-  const [selectedName, setSelectedName] = useState("Eva");
+  const [name, setName] = useState("Emily");
   const [selectedLanguage, setSelectedLanguage] = useState("English");
   const [isGenerating, setIsGenerating] = useState(false);
 
-  const names = ["Alice", "Bob", "Charlie", "David", "Eva", "Emily", "Fiona", "Grace", "Hannah", "Julia", "Kate", "Lily","Sydney", "Samantha", "Victoria"];
   const languages = ["English", "Spanish", "French", "German", "Japanese", "Russian", "Polish", "Italian"];
 
   const generateGreeting = async () => {
-    if (!selectedName || !selectedLanguage) {
-      setGreeting("Please select both a name and a language.");
+    if (!name || !selectedLanguage) {
+      setGreeting("Please enter a name and select a language.");
       return;
     }
 
@@ -34,7 +34,7 @@ export default function Home() {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ name: selectedName, language: selectedLanguage }),
+        body: JSON.stringify({ name, language: selectedLanguage }),
       });
       const data = await response.json();
       setGreeting(data.greeting);
@@ -69,18 +69,13 @@ export default function Home() {
         </ol>
 
         <div className="flex flex-col items-center gap-4 mt-8 w-full">
-          <Select onValueChange={setSelectedName} defaultValue="Eva">
-            <SelectTrigger className="w-full max-w-xs">
-              <SelectValue placeholder="Select a name" />
-            </SelectTrigger>
-            <SelectContent>
-              {names.map((name) => (
-                <SelectItem key={name} value={name}>
-                  {name}
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
+          <Input
+            type="text"
+            placeholder="Enter a name"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            className="w-full max-w-xs"
+          />
 
           <Select onValueChange={setSelectedLanguage} defaultValue="English">
             <SelectTrigger className="w-full max-w-xs">
