@@ -1,36 +1,98 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Next.js + FastAPI Template
+
+This project serves as a template for building applications that combine a Next.js frontend with a FastAPI backend. It demonstrates how to structure and connect these technologies, using a simple AI-powered greeting generator as an example feature.
+
+## Features
+
+- Next.js 14 frontend with App Router, demonstrating a modern React setup
+- FastAPI backend, showing Python-based API development
+- Integration example with Google's Gemini AI model
+- shadcn/ui components for a sleek, customizable UI
+- Tailwind CSS for styling
+- Example of cross-stack functionality (AI-powered greeting generation)
+
+## Tech Stack
+
+- Frontend: Next.js 14 (React 18)
+- Backend: FastAPI (Python)
+- UI Components: shadcn/ui (based on Radix UI)
+- Styling: Tailwind CSS
+- AI Integration: Google Gemini AI (as an example)
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- Node.js (v14 or later)
+- Python (v3.8 or later)
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Installation
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/your-username/nextjs-fastapi-template.git
+   cd nextjs-fastapi-template
+   ```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+2. Install frontend dependencies:
+   ```bash
+   npm install
+   ```
 
-## Learn More
+3. Install backend dependencies:
+   ```bash
+   pip install -r requirements.txt
+   ```
 
-To learn more about Next.js, take a look at the following resources:
+4. Set up environment variables:
+   - Copy `.env.example` to `.env`
+   - Add your Gemini API key to the `.env` file (for the example AI feature)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Running the Application
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+There are two recommended ways to run the application:
 
-## Deploy on Vercel
+1. Development mode (with hot-reloading):
+   ```bash
+   npm run dev
+   ```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+   This command will:
+   - Start the Next.js dev server on port 3000
+   - Start the FastAPI server on port 8000
+   - Enable hot-reloading for both frontend and backend
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+2. Production mode:
+   ```bash
+   npm start
+   ```
+
+   This command will:
+   - Build the Next.js application
+   - Start the Next.js production server on port 3000
+   - Start the FastAPI server on port 8000
+
+For both options, you can access the application at http://localhost:3000 in your browser.
+
+If you need to run the frontend and backend separately:
+
+- Frontend only: 
+  - Development: `npm run dev`
+  - Production: `npm run build && npm run start`
+- Backend only: `uvicorn app.api.main:app --host 0.0.0.0 --port 8000 --reload`
+
+## Template Usage
+
+This template provides a starting point for building applications with Next.js and FastAPI. The AI greeting generator is included as an example of how to integrate external services. You can:
+
+1. Use this structure to build your own applications
+2. Replace the AI greeting feature with your own API endpoints and frontend components
+3. Extend the capabilities or integrate different services as needed
+
+## Contributing
+
+Contributions to improve this template are welcome! Please feel free to submit a Pull Request.
+
+## License
+
+This project is open source and available under the [MIT License](LICENSE).

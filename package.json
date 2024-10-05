@@ -3,11 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "sh -c 'next dev & uvicorn app.api.main:app --host 0.0.0.0 --port 8000 --reload'",
     "build": "next build",
-    "start": "next start",
-    "lint": "next lint",
-    "all": "sh -c 'npm run dev & uvicorn app.api.main:app --host 0.0.0.0 --port 8000 --reload'"
+    "start": "sh -c 'next build && next start & uvicorn app.api.main:app --host 0.0.0.0 --port 8000'",
+    "lint": "next lint"
   },
   "dependencies": {
     "@radix-ui/react-icons": "^1.3.0",
