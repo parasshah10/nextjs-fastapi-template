@@ -15,6 +15,9 @@ COPY package*.json ./
 RUN npm install
 COPY . .
 
+# Build the Next.js application
+RUN npm run build
+
 # Combine Python and Node.js
 FROM python-base
 WORKDIR /app
@@ -38,5 +41,5 @@ USER appuser
 # Expose the ports the apps run on
 EXPOSE 3000 8000
 
-# Start both the FastAPI backend and Next.js frontend in development mode.
-CMD ["sh", "-c", "npm run dev & uvicorn app.api.main:app --host 0.0.0.0 --port 8000"]
+# Start both the FastAPI backend and Next.js frontend in production mode
+CMD ["sh", "-c", "npm run start & uvicorn app.api.main:app --host 0.0.0.0 --port 8000"]
