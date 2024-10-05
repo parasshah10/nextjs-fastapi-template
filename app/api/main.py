@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-# from .routes import generate_image
+from .routes import greeting
 
 app = FastAPI()
 
@@ -14,7 +14,7 @@ app.add_middleware(
 )
 
 # Include routers
-# app.include_router(generate_image.router, prefix="/api")
+app.include_router(greeting.router, prefix="/api")
 
 @app.get("/")
 async def root():
